@@ -110,8 +110,8 @@ textarea:focus, input:focus {
 }
 
 .bColor {
-    background-color: #ff6358;
-    color: white;
+    /* background-color: #ff6358; */
+    /* color: white; */
     border: none;
     position: absolute;
     bottom: 0;
