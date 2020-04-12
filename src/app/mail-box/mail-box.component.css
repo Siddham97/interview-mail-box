@@ -115,6 +115,7 @@ textarea:focus, input:focus {
     border: none;
     position: absolute;
     bottom: 0;
+    margin-left: 12.6%;
     /* margin-top: 250px;
         margin-left: 172px; */
 }
