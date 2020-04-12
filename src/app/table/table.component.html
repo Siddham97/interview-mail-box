@@ -1,0 +1,35 @@
+<app-mail-box [noneSelected]="noneSelected"></app-mail-box>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck" (change)="CheckAllOptions($event)">
+                <label class="custom-control-label" for="customCheck">Select All</label>
+              </div>
+            </th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of userData;let i=index">
+            <td>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck_{{i}}" [(ngModel)]="item.checked"
+                  [value]="item.checked" (change)="checkIfNoneSelected()">
+                <label class="custom-control-label" for="customCheck_{{i}}">&nbsp;</label>
+              </div>
+            </td>
+            <td>{{item.name}}</td>
+            <td>{{item.email}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

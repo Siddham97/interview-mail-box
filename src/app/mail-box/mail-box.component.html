@@ -1,0 +1,89 @@
+<div class="example-wrapper">
+  <button class="bColor" *ngIf="!opened" [disabled]="noneSelected" (click)="open()">Open Mailbox</button>
+  <p *ngIf="dataSaved" class="ml170">Output: {{this.result |json}}</p>
+  <kendo-window title="Email" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">
+
+    <form class="k-form" [formGroup]="mailForm">
+      <label class="k-form-field" class="label-flex">
+        <span>To</span>
+        <div *ngFor="let item of this.userData" class="">
+          <div *ngIf="item.checked" class="nameStyle position-mail">{{item.email}}
+            <span class="cross" (click)="item.checked=false;updateUserData()">x</span>
+          </div>
+
+
+          <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">close</mat-icon> -->
+        </div>
+        <input class="no-border" formControlName="to" (focusout)="checkToInput()"/>
+      </label>
+      <!-- <label class="k-form-field bottomB">
+        <span>From</span>
+        <input class="no-border" formControlName="from" />
+      </label> -->
+
+      <label class="k-form-field bottomB">
+        <span>Subject</span>
+        <input class="no-border" formControlName="subject" />
+      </label>
+      <label class="k-form-field bottomB">
+        <textarea placeholder="Your Message.." class="no-border-textarea" formControlName="message"></textarea>
+      </label>
+      <div class="row">
+      <div class="col-5">
+        <button type="button" class="k-button k-primary" [disabled]="!this.mailForm.valid || errorMsgForTo1==true || errorMsgForTo2==true" (click)="submit()">Send
+          Email</button>
+      </div>
+      <div class="col-12"> 
+        <div>Associated with {{this.selectedItems.length}} records</div>
+      </div>
+    </div>
+    </form>
+    <angular2-multiselect [(data)]="userData" [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+ (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect>
+ <div *ngIf="this.mailForm.controls.subject.errors && this.mailForm.controls.subject.touched" class="mb-3 bg-danger text-white">
+  Subject is required
+</div>
+<div *ngIf="this.mailForm.controls.message.errors && this.mailForm.controls.message.touched" class="mb-3  bg-danger text-white">
+  Message is required
+  <br>
+</div>
+<div *ngIf="this.errorMsgForTo1" class="mb-3  bg-danger text-white">
+  Not a valid email Address
+  <br>
+</div>
+<div *ngIf="this.errorMsgForTo2" class="mb-3  bg-danger text-white">
+  Email Address already present
+  <br>
+</div>
+  </kendo-window>
+</div>
+
+<!-- <div class="panel panel-primary">
+  <div class="panel-heading">
+
+  </div>
+  <div class="panel-body">
+
+
+    <div class="table-responsive">
+      <table class="table table-striped" *ngIf='users && users.length'>
+        <tbody>
+          <tr *ngFor="let user of users; let in = index">
+
+
+            <td> 
+
+              <angular2-multiselect name="dropdown-{{user.id}}" [data]="dropdownList"
+                [(ngModel)]="selectedItems[user.id]" [settings]="dropdownSettings"
+                (onSelect)="onItemSelect($event, user.id)" (onDeSelect)="OnItemDeSelect($event,user.id)"
+                (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)" disabled>
+              </angular2-multiselect>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div> -->
