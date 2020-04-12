@@ -56,5 +56,9 @@ export class TableComponent implements OnInit {
       // this.triggerChildValue();
     }
   }
+
+  openMailBoxButtonState(event) {
+    this.noneSelected = event;
+  }
 }
 
